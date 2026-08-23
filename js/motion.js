@@ -104,8 +104,8 @@ class WildishMotionEngine {
     this.canvas = document.getElementById('hero-particle-canvas');
     this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
     this.particles = [];
-    this.particleCount = 65;
-    this.mouse = { x: null, y: null, radius: 150, isHovering: false };
+    this.particleCount = window.innerWidth < 768 ? 32 : 65;
+    this.mouse = { x: null, y: null, radius: 140, isHovering: false };
     this.animationFrameId = null;
 
     this.init();
@@ -117,6 +117,23 @@ class WildishMotionEngine {
       window.addEventListener('resize', () => this.resizeCanvas());
       window.addEventListener('mousemove', (e) => this.handleMouseMove(e));
       window.addEventListener('mouseleave', () => this.handleMouseLeave());
+      
+      // Mobile touch support
+      this.canvas.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          const rect = this.canvas.getBoundingClientRect();
+          this.mouse.x = e.touches[0].clientX - rect.left;
+          this.mouse.y = e.touches[0].clientY - rect.top;
+          this.mouse.isHovering = true;
+        }
+      }, { passive: true });
+
+      this.canvas.addEventListener('touchend', () => {
+        this.mouse.x = null;
+        this.mouse.y = null;
+        this.mouse.isHovering = false;
+      }, { passive: true });
+
       this.createParticles();
       this.animateParticles();
     }

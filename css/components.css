@@ -1646,3 +1646,167 @@
 .whatsapp-icon {
   font-size: 1.3rem;
 }
+
+/* ==========================================================================
+   Advanced Mobile & Ultra-Small Screen Optimizations (< 768px and < 480px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Prevent iOS zoom on inputs */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Map Card Mobile Repositioning */
+  #map-section {
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #map-section iframe {
+    height: 320px !important;
+  }
+
+  #map-section > div[style*="position: absolute"] {
+    position: static !important;
+    max-width: 100% !important;
+    margin: 20px;
+    border-radius: var(--radius-md) !important;
+  }
+
+  /* Radar Dish Buttons Horizontal Scroll */
+  .radar-dish-nav {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+  }
+  .radar-dish-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .radar-dish-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Radar Card Padding */
+  .flavor-radar-grid {
+    padding: 24px 16px !important;
+  }
+
+  .radar-info-card {
+    padding-left: 0 !important;
+  }
+
+  /* Compact Floating Audio Dock & WhatsApp on Mobile */
+  .soundscape-floating-dock {
+    bottom: 16px;
+    left: 12px;
+    padding: 6px 12px 6px 8px;
+    gap: 8px;
+    max-width: calc(100vw - 160px);
+  }
+
+  .soundscape-subtitle {
+    display: none;
+  }
+
+  .soundscape-title {
+    font-size: 0.72rem;
+    max-width: 110px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .whatsapp-floating-btn {
+    bottom: 16px;
+    right: 12px;
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .whatsapp-floating-btn span {
+    display: none;
+  }
+
+  .whatsapp-floating-btn::after {
+    content: "VIP Chat";
+  }
+
+  /* VIP Ticket Modal Mobile Fitting */
+  .ticket-card {
+    max-width: 100%;
+    margin: 10px;
+  }
+
+  .ticket-header {
+    padding: 16px 20px;
+  }
+
+  .ticket-body {
+    padding: 20px;
+  }
+
+  .ticket-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .ticket-footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 16px 20px;
+  }
+
+  .ticket-footer button {
+    width: 100%;
+  }
+
+  /* Hero Actions Stack */
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  /* Meal Type Radios Stack */
+  .meal-type-radios {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 2.1rem !important;
+  }
+
+  .hero-tagline {
+    font-size: 1.8rem !important;
+  }
+
+  .radar-svg-container {
+    height: 300px;
+  }
+
+  .top-bar-inner {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .top-bar-contact {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+  }
+}
