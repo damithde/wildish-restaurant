@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>WILDISH Restaurant | Immersive Dining at Capitol TwinPeaks Colombo by Wild Cookbook</title>
+  
+  <meta name="description" content="WILDISH at Capitol TwinPeaks, Colombo — immersive culinary dining from Wild Cookbook by Chef Charith N. Silva. Globally inspired cuisine, premium seafood, signature mocktails & Sri Lankan soul." />
+  <meta name="keywords" content="Wildish, Wildish Restaurant, Wild Cookbook, Charith N Silva, fine dining Colombo, Capitol TwinPeaks, Sri Lankan restaurant, seafood, mocktails" />
+  <meta name="theme-color" content="#07080a" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="WILDISH Restaurant | Immersive Dining in Colombo" />
+  <meta property="og:description" content="WILDISH at Capitol TwinPeaks, Colombo — immersive dining from Wild Cookbook by Chef Charith N. Silva." />
+  <meta property="og:image" content="assets/images/interior.png" />
+  <meta property="og:url" content="https://wildish.lk/" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="assets/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="assets/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/favicons/site.webmanifest" />
+
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Restaurant",
+        "@id": "https://wildish.lk/#restaurant",
+        "name": "Wildish Restaurant",
+        "alternateName": "Wildish by Wild Cookbook",
+        "description": "Immersive culinary destination from Wild Cookbook and Chef Charith N. Silva at Capitol TwinPeaks, Colombo — globally inspired cuisine, premium seafood, handcrafted beverages, and unmistakable Sri Lankan soul.",
+        "url": "https://wildish.lk/",
+        "telephone": "+94713333401",
+        "priceRange": "LKR 1,500 - LKR 20,000",
+        "servesCuisine": ["Sri Lankan", "International", "Seafood", "Artisan Coffee"],
+        "acceptsReservations": true,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Capitol Twin Peaks, 24 Staple Street",
+          "addressLocality": "Colombo 02",
+          "postalCode": "00200",
+          "addressCountry": "LK"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 6.9194,
+          "longitude": 79.8477
+        },
+        "openingHours": "Mo-Su 11:00-22:30"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ===== TOP ANNOUNCEMENT BAR ===== -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="live-status-pill">
+        <span class="live-status-dot open"></span>
+        <span class="live-status-text"><strong>Open Daily</strong> · 11:00 AM – 10:30 PM</span>
+      </div>
+      <div class="top-bar-contact">
+        <a href="tel:+94713333401"><i class="fa-solid fa-phone"></i> +94 71 333 3401</a>
+        <a href="#map-section"><i class="fa-solid fa-location-dot"></i> Capitol TwinPeaks, Colombo 02</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="navbar" class="navbar" aria-label="Main Navigation">
+    <div class="container nav-container">
+      <a href="#home" class="nav-logo" aria-label="Wildish Home">
+        <img src="assets/images/wildish-logo.svg" alt="Wildish by Wild Cookbook" class="nav-logo-img" />
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#story" class="nav-link">Our Story</a></li>
+        <li><a href="#signatures" class="nav-link">Signatures</a></li>
+        <li><a href="#flavor-radar" class="nav-link">Flavor Radar</a></li>
+        <li><a href="#menu-explorer" class="nav-link">Full Menu</a></li>
+        <li><a href="#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="#reservation" class="nav-cta-btn btn-magnetic">Reserve Table</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION WITH MOTION CANVAS & VIDEO ===== -->
+  <section id="home" class="hero">
+    <div class="hero-bg-media">
+      <video class="hero-video" autoplay loop muted playsinline poster="assets/images/interior.png">
+        <source src="assets/images/hero-video.mp4" type="video/mp4" />
+        <img src="assets/images/interior.png" alt="Wildish Restaurant Dining Ambiance" />
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <!-- Interactive Glowing Embers & Steam Particle Canvas -->
+    <canvas id="hero-particle-canvas"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-badge-wrap reveal-on-scroll">
+        <i class="fa-solid fa-fire-flame-curved text-gold"></i>
+        <span>By Wild Cookbook · Chef Charith N. Silva</span>
+      </div>
+
+      <h1 class="hero-logo-large reveal-on-scroll reveal-delay-1">
+        <img src="assets/images/wildish-logo.svg" alt="Wildish" style="width: 100%; height: auto;" />
+      </h1>
+
+      <p class="hero-tagline reveal-on-scroll reveal-delay-2">"So good. It gets Wild."</p>
+
+      <p class="hero-lead reveal-on-scroll reveal-delay-3">
+        Garden-bright flavours from ingredients at their peak, fresh Madu lagoon seafood, artisan coffee, and an untamed culinary atmosphere in the heart of Colombo.
+      </p>
+
+      <div class="hero-actions reveal-on-scroll reveal-delay-3">
+        <a href="#menu-explorer" class="btn btn-gold btn-magnetic">
+          <i class="fa-solid fa-utensils"></i> Explore Full Menu
+        </a>
+        <a href="#reservation" class="btn btn-outline btn-magnetic">
+          <i class="fa-regular fa-calendar-check"></i> Book VIP Table
+        </a>
+        <a href="https://youtube.com/@wildcookbook" target="_blank" rel="noopener" class="btn btn-yt btn-magnetic">
+          <i class="fa-brands fa-youtube"></i> 10.8M+ YouTube
+        </a>
+      </div>
+
+      <div class="hero-scroll-cue">
+        <span>Scroll to Explore</span>
+        <div class="scroll-line-motion"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HIGHLIGHTS & MILESTONES ===== -->
+  <section class="highlights-strip">
+    <div class="container">
+      <div class="highlights-grid">
+        <div class="highlight-box">
+          <div class="highlight-icon-wrap">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <div class="highlight-text">
+            <h4>Fresh & Seasonal</h4>
+            <p>Thoughtfully sourced Ceylon produce</p>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <div class="highlight-icon-wrap">
+            <i class="fa-solid fa-fish-fins"></i>
+          </div>
+          <div class="highlight-text">
+            <h4>Lagoon & Ocean Catch</h4>
+            <p>Madu crab, jumbo prawns & lobster</p>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <div class="highlight-icon-wrap">
+            <i class="fa-solid fa-building"></i>
+          </div>
+          <div class="highlight-text">
+            <h4>Capitol TwinPeaks</h4>
+            <p>Staple Street, Colombo 02</p>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <div class="highlight-icon-wrap">
+            <i class="fa-brands fa-youtube" style="color: #ff4d4d;"></i>
+          </div>
+          <div class="highlight-text">
+            <h4 data-counter-target="10.8" data-counter-suffix="M+ Subscribers">10.8M+ Subscribers</h4>
+            <p>Global YouTube culinary phenomenon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SENSORY WILD SIGNATURES ===== -->
+  <section id="signatures" class="signatures-section">
+    <div class="container">
+      <div class="section-header center reveal-on-scroll">
+        <div class="section-badge"><i class="fa-solid fa-crown"></i> Wild Masterpieces</div>
+        <h2 class="section-title">Sensory <em>Signatures</em></h2>
+        <p class="section-desc">Each signature dish represents the fusion of untamed Sri Lankan spices with world-class gastronomic technique.</p>
+      </div>
+
+      <div class="signatures-grid">
+        <!-- Crab Curry -->
+        <article class="signature-card tilt-card reveal-on-scroll">
+          <div class="card-glare"></div>
+          <div class="signature-img-wrap">
+            <img src="assets/images/crab-curry.png" alt="Madu Lagoon Crab Curry with Roast Paan" loading="lazy" />
+            <div class="signature-img-overlay"></div>
+            <span class="dish-badge badge-signature signature-badge-top"><i class="fa-solid fa-crown"></i> Chef's Iconic Dish</span>
+            <div class="signature-price-tag">LKR 12,500</div>
+          </div>
+          <div class="signature-body">
+            <h3 class="signature-title">Madu Lagoon Crab Curry</h3>
+            <p class="signature-desc">Freshly harvested Madu Lagoon whole crab slow-simmered in rich organic coconut milk with hand-ground roasted spices. Served with crusty wood-fired roast paan & freshly scraped pol sambol.</p>
+            <div class="signature-flavor-tags">
+              <span class="flavor-tag"><i class="fa-solid fa-pepper-hot"></i> Spicy Kochchi</span>
+              <span class="flavor-tag"><i class="fa-solid fa-bread-slice"></i> Roast Paan</span>
+              <span class="flavor-tag"><i class="fa-solid fa-water"></i> Madu Catch</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Wild Surf Grill -->
+        <article class="signature-card tilt-card reveal-on-scroll reveal-delay-1">
+          <div class="card-glare"></div>
+          <div class="signature-img-wrap">
+            <img src="assets/images/wild-surf-grill.png" alt="Wild Surf & Turf Grill" loading="lazy" />
+            <div class="signature-img-overlay"></div>
+            <span class="dish-badge badge-popular signature-badge-top">Grand Sharing Platter</span>
+            <div class="signature-price-tag">LKR 18,600</div>
+          </div>
+          <div class="signature-body">
+            <h3 class="signature-title">Wild Surf & Turf Grill Platter</h3>
+            <p class="signature-desc">A magnificent ocean feast featuring rock lobster, king fish steaks, jumbo river prawns, and tender calamari glazed in Thai chili and garlic sesame sauces with garlic butter rice.</p>
+            <div class="signature-flavor-tags">
+              <span class="flavor-tag">Whole Lobster</span>
+              <span class="flavor-tag">Jumbo Prawns</span>
+              <span class="flavor-tag">House Bakery</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Signature Mocktails -->
+        <article class="signature-card tilt-card reveal-on-scroll reveal-delay-2">
+          <div class="card-glare"></div>
+          <div class="signature-img-wrap">
+            <img src="assets/images/glacier-de-menthe.jpg" alt="Glacier De Menthe Mocktail" loading="lazy" />
+            <div class="signature-img-overlay"></div>
+            <span class="dish-badge badge-signature signature-badge-top">Botanical Elixir</span>
+            <div class="signature-price-tag">LKR 1,650</div>
+          </div>
+          <div class="signature-body">
+            <h3 class="signature-title">Glacier De Menthe & Arctic Nona</h3>
+            <p class="signature-desc">Muddled fresh mountain spearmint, cucumber ribbons, and freshly squeezed Persian lime with artisanal botanical soda. An invigorating palate cleanser for bold spices.</p>
+            <div class="signature-flavor-tags">
+              <span class="flavor-tag">Mountain Mint</span>
+              <span class="flavor-tag">Fresh Lime</span>
+              <span class="flavor-tag">Botanical Soda</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== "WILD FIRE & SPICE" SENSORY FLAVOR RADAR ===== -->
+  <section id="flavor-radar" class="flavor-radar-section">
+    <div class="container">
+      <div class="section-header center reveal-on-scroll">
+        <div class="section-badge"><i class="fa-solid fa-compass-drafting"></i> Sensory Explorer</div>
+        <h2 class="section-title">Wild Fire & Spice <em>Flavor Radar</em></h2>
+        <p class="section-desc">Analyze the precise sensory architecture, spice thresholds, and sommelier beverage pairings across our signature creations.</p>
+      </div>
+
+      <div class="flavor-radar-grid reveal-on-scroll">
+        <!-- Interactive Radar SVG Display -->
+        <div class="radar-display-wrap">
+          <div class="radar-dish-nav">
+            <button class="radar-dish-btn active" data-dish-key="crab-curry">Crab Curry</button>
+            <button class="radar-dish-btn" data-dish-key="wild-surf-grill">Surf & Turf Grill</button>
+            <button class="radar-dish-btn" data-dish-key="lamb-sando">Lamb Sando</button>
+            <button class="radar-dish-btn" data-dish-key="hot-shrimp-pizza">Hot Shrimp Pizza</button>
+            <button class="radar-dish-btn" data-dish-key="glacier-de-menthe">Glacier De Menthe</button>
+          </div>
+
+          <svg class="radar-svg-container" viewBox="0 0 380 380">
+            <!-- Background Web Rings -->
+            <circle cx="190" cy="190" r="120" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+            <circle cx="190" cy="190" r="90" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+            <circle cx="190" cy="190" r="60" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+            <circle cx="190" cy="190" r="30" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+
+            <!-- 5 Radial Axes -->
+            <line x1="190" y1="190" x2="190" y2="70" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="2 2" />
+            <line x1="190" y1="190" x2="304.1" y2="152.9" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="2 2" />
+            <line x1="190" y1="190" x2="260.5" y2="287.1" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="2 2" />
+            <line x1="190" y1="190" x2="119.5" y2="287.1" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="2 2" />
+            <line x1="190" y1="190" x2="75.9" y2="152.9" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="2 2" />
+
+            <!-- Animated Radar Polygon -->
+            <polygon id="radar-svg-poly" class="radar-polygon" points="190,76 270,164 240,250 125,275 80,160" />
+
+            <!-- Point Dots -->
+            <circle id="radar-point-0" class="radar-point" cx="190" cy="76" />
+            <circle id="radar-point-1" class="radar-point" cx="270" cy="164" />
+            <circle id="radar-point-2" class="radar-point" cx="240" cy="250" />
+            <circle id="radar-point-3" class="radar-point" cx="125" cy="275" />
+            <circle id="radar-point-4" class="radar-point" cx="80" cy="160" />
+
+            <!-- Axis Labels -->
+            <text x="190" y="52" class="radar-axis-label">🌶️ SPICE (KOCHCHI)</text>
+            <text x="325" y="156" class="radar-axis-label">🔥 WOODFIRE CHAR</text>
+            <text x="275" y="310" class="radar-axis-label">🍋 CITRUS / TANG</text>
+            <text x="105" y="310" class="radar-axis-label">🥥 COCONUT CREAM</text>
+            <text x="55" y="156" class="radar-axis-label">🌿 AROMATICS</text>
+          </svg>
+        </div>
+
+        <!-- Radar Flavor Notes & Pairing Card -->
+        <div class="radar-info-card">
+          <div class="section-badge"><i class="fa-solid fa-chart-pie text-gold"></i> Dynamic Profile</div>
+          <h3 id="radar-dish-title" class="radar-dish-heading">Madu Lagoon Crab Curry</h3>
+
+          <div class="radar-spice-level-bar">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--gold-light);">HEAT RATING:</span>
+            <div class="spice-meter-track">
+              <div id="radar-spice-bar" class="spice-meter-fill" style="width: 92%;"></div>
+            </div>
+            <strong id="radar-spice-val" style="font-size: 0.95rem; color: #ff6b6b;">92%</strong>
+          </div>
+          <p id="radar-spice-desc" style="font-size: 0.92rem; color: var(--text-subtle); margin-top: -12px;">Kochchi Chili & Roasted Curry Heat</p>
+
+          <div class="radar-pairing-box">
+            <h4 id="radar-pair-title"><i class="fa-solid fa-wine-glass text-gold"></i> Sommelier & Bar Pairing</h4>
+            <p id="radar-pair-desc">Pairs exquisitely with Glacier De Menthe botanical soda or a chilled crisp BYOB Sauvignon Blanc to balance the fiery coconut gravy.</p>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <a href="#reservation" class="btn btn-gold btn-magnetic" style="font-size: 0.88rem; padding: 12px 24px;">
+              <i class="fa-regular fa-calendar-check"></i> Book Table to Taste
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OUR STORY & WILD COOKBOOK ===== -->
+  <section id="story" class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-media-wrap reveal-on-scroll">
+          <img src="assets/images/chef.png" alt="Chef Charith N. Silva - Wild Cookbook" class="story-main-img" />
+          <div class="diamond-badge-card">
+            <i class="fa-brands fa-youtube diamond-badge-icon"></i>
+            <div class="diamond-badge-text">
+              <h4 data-counter-target="10.8" data-counter-suffix="M+">10.8M+</h4>
+              <p>YouTube Diamond Creator</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-content reveal-on-scroll reveal-delay-1">
+          <div class="section-badge"><i class="fa-solid fa-utensils"></i> Our Heritage</div>
+          <h2 class="section-title">Where the Wild<br /><em>Meets the Table</em></h2>
+          
+          <p class="story-text">
+            Born from the globally celebrated open-air kitchen of <strong>Wild Cookbook</strong> and brought to life by the culinary artistry of <strong>Chef Charith N. Silva</strong>, WILDISH is far more than a restaurant — it is an immersive dining destination where creativity, fire, and bold flavours unite.
+          </p>
+
+          <p class="story-text">
+            Set against the rustic warmth of exposed timber, warm amber Edison glow, and the captivating theatre of our live open kitchen at <strong>Capitol TwinPeaks</strong>, we welcome guests from across the world to taste the real soul of Ceylon.
+          </p>
+
+          <div class="story-signature">
+            <span class="sig-name">Charith N. Silva</span>
+            <span class="sig-title">Chef & Founder, Wild Cookbook</span>
+          </div>
+
+          <div class="story-actions">
+            <a href="https://youtube.com/@wildcookbook" target="_blank" rel="noopener" class="btn btn-yt btn-magnetic">
+              <i class="fa-brands fa-youtube"></i> Watch on YouTube (10.8M)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERACTIVE MENU EXPLORER ===== -->
+  <section id="menu-explorer" class="menu-explorer-section">
+    <div class="container">
+      <div class="section-header center reveal-on-scroll">
+        <div class="section-badge"><i class="fa-solid fa-book-open"></i> À La Carte Catalog</div>
+        <h2 class="section-title">Crafted with <em>Fire & Passion</em></h2>
+        <p class="section-desc">Explore over 70 handcrafted dishes and artisan beverages. Use category tabs or search to find your flavor.</p>
+      </div>
+
+      <!-- Controls: Search + Categories + Dietary filter -->
+      <div class="menu-controls-wrapper reveal-on-scroll">
+        <div class="menu-search-bar">
+          <i class="fa-solid fa-magnifying-glass menu-search-icon"></i>
+          <input type="text" id="menu-search-input" placeholder="Search dishes, ingredients (e.g., Crab, Sando, Prawn, Pizza, Brownie)..." aria-label="Search menu" />
+        </div>
+
+        <div class="category-pills-scroller" id="menu-category-tabs">
+          <!-- Dynamic Category Tabs injected via app.js -->
+        </div>
+
+        <div class="diet-filter-strip">
+          <div class="diet-pills">
+            <button class="diet-pill-btn active" data-diet="all">All Dishes</button>
+            <button class="diet-pill-btn" data-diet="signature"><i class="fa-solid fa-crown text-gold"></i> Signatures</button>
+            <button class="diet-pill-btn" data-diet="seafood"><i class="fa-solid fa-fish"></i> Fresh Seafood</button>
+            <button class="diet-pill-btn" data-diet="spicy"><i class="fa-solid fa-pepper-hot"></i> Spicy Kochchi</button>
+            <button class="diet-pill-btn" data-diet="veg"><i class="fa-solid fa-leaf"></i> Vegetarian</button>
+          </div>
+          <div class="items-counter-badge" id="menu-items-count">70+ Dishes Available</div>
+        </div>
+      </div>
+
+      <!-- Dishes Grid -->
+      <div class="menu-grid" id="menu-grid-container">
+        <!-- Injected via app.js from menu-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GUEST REVIEWS ===== -->
+  <section id="reviews" class="reviews-section">
+    <div class="container">
+      <div class="section-header center reveal-on-scroll">
+        <div class="section-badge"><i class="fa-solid fa-star text-gold"></i> 5.0 Star Guest Praise</div>
+        <h2 class="section-title">What Our <em>Guests</em> Say</h2>
+        <p class="section-desc">Memories shared by diners celebrating birthdays, anniversaries, and culinary explorations.</p>
+      </div>
+
+      <div class="reviews-slider-wrapper">
+        <div class="reviews-slider-track">
+          <!-- Daniela -->
+          <div class="review-slide-card">
+            <div>
+              <i class="fa-solid fa-quote-left rev-quote-icon"></i>
+              <p class="rev-comment">"Celebrated my birthday with 15 people visiting from overseas. The staff gave us unwavering attention, chilled our BYOB wine, and the food — prawns, crab curry, calamari, tenders — was outstanding! The manager even surprised us with a video recording of the cake!"</p>
+            </div>
+            <div class="rev-author-meta">
+              <span class="rev-name">Daniela Janelle</span>
+              <div class="rev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            </div>
+          </div>
+
+          <!-- Nilhan -->
+          <div class="review-slide-card">
+            <div>
+              <i class="fa-solid fa-quote-left rev-quote-icon"></i>
+              <p class="rev-comment">"Having watched Chef Charith on YouTube since Covid days, this was on our bucket list! The calamari platter was mouth-watering, the mocktails were refreshing, and the Madu chili crab was out of this world. Highly recommend!"</p>
+            </div>
+            <div class="rev-author-meta">
+              <span class="rev-name">Nilhan</span>
+              <div class="rev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            </div>
+          </div>
+
+          <!-- Hajara -->
+          <div class="review-slide-card">
+            <div>
+              <i class="fa-solid fa-quote-left rev-quote-icon"></i>
+              <p class="rev-comment">"Had the most beautiful birthday surprise experience at Wildish! The ambience with Edison lights and timber was stunning, service was wonderful, and every dish was packed with authentic spice."</p>
+            </div>
+            <div class="rev-author-meta">
+              <span class="rev-name">Hajara Rifai</span>
+              <div class="rev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            </div>
+          </div>
+
+          <!-- Gayendra -->
+          <div class="review-slide-card">
+            <div>
+              <i class="fa-solid fa-quote-left rev-quote-icon"></i>
+              <p class="rev-comment">"The absolute standout was the crab curry: rich, deeply flavorful, and perfectly paired with fresh pol sambol and plenty of crusty roast paan to soak up every drop of the gravy!"</p>
+            </div>
+            <div class="rev-author-meta">
+              <span class="rev-name">Gayendra</span>
+              <div class="rev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIP TABLE RESERVATIONS SUITE ===== -->
+  <section id="reservation" class="reservation-section">
+    <div class="container">
+      <div class="res-wrapper-grid">
+        <!-- Info Column -->
+        <div class="res-info-col reveal-on-scroll">
+          <div>
+            <div class="section-badge"><i class="fa-regular fa-calendar-check"></i> VIP Hospitality</div>
+            <h2 class="section-title">Reserve Your<br /><em>Wild Night</em></h2>
+            <p class="story-text">Tables fill up quickly. Book your table in advance for personalized dining service, special occasion surprises, or intimate booth reservations.</p>
+          </div>
+
+          <div class="res-perks-list">
+            <div class="res-perk-item">
+              <div class="res-perk-icon"><i class="fa-solid fa-wine-glass"></i></div>
+              <div>
+                <h4>BYOB Friendly</h4>
+                <p>Bring your favorite wine/spirits — we provide glassware & chilling service.</p>
+              </div>
+            </div>
+
+            <div class="res-perk-item">
+              <div class="res-perk-icon"><i class="fa-solid fa-cake-candles"></i></div>
+              <div>
+                <h4>Special Occasions</h4>
+                <p>Birthday & anniversary surprise arrangements upon request.</p>
+              </div>
+            </div>
+
+            <div class="res-perk-item">
+              <div class="res-perk-icon"><i class="fa-solid fa-clock"></i></div>
+              <div>
+                <h4>Direct Contact</h4>
+                <p>Call our host hotline: <a href="tel:+94713333401" class="text-gold">071 333 3401</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div style="font-size: 0.85rem; color: var(--text-subtle);">
+            * Reservations must be made at least 3 hours in advance.
+          </div>
+        </div>
+
+        <!-- Form Column -->
+        <div class="res-form-col reveal-on-scroll reveal-delay-1">
+          <form class="res-form" id="reservation-form">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="res-name">Full Name *</label>
+                <input type="text" id="res-name" placeholder="e.g. Kasun Fernando" required />
+              </div>
+              <div class="form-group">
+                <label for="res-phone">Phone Number *</label>
+                <input type="tel" id="res-phone" placeholder="e.g. +94 77 123 4567" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Select Meal Window *</label>
+              <div class="meal-type-radios">
+                <label class="meal-radio-box">
+                  <input type="radio" name="meal_type" value="lunch" />
+                  <span><strong>Lunch</strong> (11:00 AM – 3:30 PM)</span>
+                </label>
+                <label class="meal-radio-box">
+                  <input type="radio" name="meal_type" value="dinner" checked />
+                  <span><strong>Dinner</strong> (6:00 PM – 10:30 PM)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="res-date">Date *</label>
+                <input type="date" id="res-date" required />
+              </div>
+              <div class="form-group">
+                <label for="res-time-slot">Preferred Time *</label>
+                <select id="res-time-slot" required></select>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="res-guests">Number of Guests *</label>
+                <select id="res-guests" required>
+                  <option value="2 Guests">2 Guests (Couple Table)</option>
+                  <option value="3-4 Guests">3 – 4 Guests (Family / Friends)</option>
+                  <option value="5-8 Guests">5 – 8 Guests (Group Feast)</option>
+                  <option value="9+ Guests VIP">9+ Guests (Large Party / Event)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="res-occasion">Special Occasion</label>
+                <select id="res-occasion">
+                  <option value="Casual Culinary Dinner">Casual Culinary Dinner</option>
+                  <option value="Birthday Celebration">Birthday Celebration 🎂</option>
+                  <option value="Anniversary">Anniversary Romance ✨</option>
+                  <option value="Business Dining">Corporate / Business Dinner</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="res-note">Special Requests & Dietary Allergies (Optional)</label>
+              <textarea id="res-note" rows="2" placeholder="e.g. Seafood allergies, high-chair needed, anniversary table decor..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-gold btn-magnetic" style="width: 100%; margin-top: 10px;">
+              <i class="fa-regular fa-paper-plane"></i> Confirm Table Reservation
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAP & LOCATION SECTION ===== -->
+  <section id="map-section" style="position: relative; height: 480px; background: #07080a; overflow: hidden;">
+    <iframe
+      title="Wildish Restaurant Location at Capitol TwinPeaks Colombo"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9!2d79.8477!3d6.9194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f7a7003%3A0x9f37ba81a5c93c07!2sCapitol%20TwinPeaks%2C%2024%20Staple%20St%2C%20Colombo%2000200!5e0!3m2!1sen!2slk!4v1680000000000!5m2!1sen!2slk"
+      style="width: 100%; height: 100%; border: 0; filter: invert(90%) hue-rotate(180deg) contrast(1.2) brightness(0.8);"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    <div style="position: absolute; top: 40px; right: 40px; max-width: 360px; background: rgba(14, 16, 21, 0.95); backdrop-filter: blur(14px); border: 1px solid var(--border-gold); border-radius: var(--radius-md); padding: 28px; box-shadow: var(--shadow-lg); z-index: 10;">
+      <img src="assets/images/wildish-logo.svg" alt="Wildish" style="height: 36px; margin-bottom: 14px;" />
+      <p style="font-size: 0.92rem; color: #fff; margin-bottom: 8px;"><i class="fa-solid fa-location-dot text-gold"></i> Capitol TwinPeaks, 24 Staple St, Colombo 02</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;"><i class="fa-regular fa-clock text-gold"></i> Open Daily 11:00 AM – 10:30 PM</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px;"><i class="fa-solid fa-phone text-gold"></i> +94 71 333 3401</p>
+      <a href="https://maps.app.goo.gl/8cybe72swc7xstbV9" target="_blank" rel="noopener" class="btn btn-gold btn-magnetic" style="width: 100%; font-size: 0.85rem; padding: 10px 16px;">
+        <i class="fa-solid fa-diamond-turn-right"></i> Open in Google Maps
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FAQ SECTION ===== -->
+  <section id="faq" style="padding: 90px 0; background: var(--bg-darkest);">
+    <div class="container" style="max-width: 900px;">
+      <div class="section-header center reveal-on-scroll">
+        <div class="section-badge"><i class="fa-solid fa-circle-question"></i> Need to Know</div>
+        <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;" class="reveal-on-scroll">
+        <details style="background: var(--bg-surface); padding: 20px 24px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); cursor: pointer;" open>
+          <summary style="font-weight: 600; font-size: 1.1rem; color: #fff;">Where is Wildish located?</summary>
+          <p style="margin-top: 12px; font-size: 0.95rem; color: var(--text-muted);">Wildish Restaurant is at Capitol Twin Peaks, 24 Staple Street, Colombo 02, Sri Lanka — in the heart of Colombo’s dining scene.</p>
+        </details>
+
+        <details style="background: var(--bg-surface); padding: 20px 24px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); cursor: pointer;">
+          <summary style="font-weight: 600; font-size: 1.1rem; color: #fff;">Do you offer a buffet?</summary>
+          <p style="margin-top: 12px; font-size: 0.95rem; color: var(--text-muted);">Wildish is an à la carte restaurant — we do not offer a buffet. Every dish is freshly prepared and fire-cooked individually, so you can order exactly what you like from our menu.</p>
+        </details>
+
+        <details style="background: var(--bg-surface); padding: 20px 24px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); cursor: pointer;">
+          <summary style="font-weight: 600; font-size: 1.1rem; color: #fff;">How do I book a table?</summary>
+          <p style="margin-top: 12px; font-size: 0.95rem; color: var(--text-muted);">Use the reservation form on our website to choose your date, lunch or dinner, and preferred time. We will contact you to confirm your booking. You can also call us directly on +94 71 333 3401 or message via VIP WhatsApp.</p>
+        </details>
+
+        <details style="background: var(--bg-surface); padding: 20px 24px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); cursor: pointer;">
+          <summary style="font-weight: 600; font-size: 1.1rem; color: #fff;">Do you serve lunch and dinner?</summary>
+          <p style="margin-top: 12px; font-size: 0.95rem; color: var(--text-muted);">Yes. Select Lunch (11:00 AM – 3:30 PM) or Dinner (6:00 PM – 10:30 PM) when you book; opening hours are daily 11:00 AM – 10:30 PM.</p>
+        </details>
+
+        <details style="background: var(--bg-surface); padding: 20px 24px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); cursor: pointer;">
+          <summary style="font-weight: 600; font-size: 1.1rem; color: #fff;">What kind of food does Wildish serve?</summary>
+          <p style="margin-top: 12px; font-size: 0.95rem; color: var(--text-muted);">Seasonal dishes built on fresh ingredients, artisan coffee, and vibrant flavours — Sri Lankan and international influences, crafted by Chef Charith N. Silva and the Wild Cookbook team.</p>
+        </details>
+
+        <details style="background: var(--bg-surface); padding: 20px 24px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); cursor: pointer;">
+          <summary style="font-weight: 600; font-size: 1.1rem; color: #fff;">Is Wildish related to Wild Cookbook?</summary>
+          <p style="margin-top: 12px; font-size: 0.95rem; color: var(--text-muted);">Yes. Wildish is the official restaurant experience by Wild Cookbook — the same creative kitchen behind our videos and recipes on YouTube with over 10.8 Million subscribers.</p>
+        </details>
+
+        <details style="background: var(--bg-surface); padding: 20px 24px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); cursor: pointer;">
+          <summary style="font-weight: 600; font-size: 1.1rem; color: #fff;">Where can I follow Wildish online?</summary>
+          <p style="margin-top: 12px; font-size: 0.95rem; color: var(--text-muted);">Find us on Instagram @wildish.colombo, Facebook, YouTube @wildcookbook, and TikTok for updates, events, and behind-the-scenes content.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="assets/images/wildish-logo.svg" alt="Wildish" class="footer-logo-img" />
+          <p class="footer-tagline">"So good. It gets Wild."</p>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            By Wild Cookbook — where bold flavours, wood-fired heritage, and untamed passion converge at Capitol TwinPeaks, Colombo.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://www.instagram.com/wildish.colombo" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/wildish.colombo" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://youtube.com/@wildcookbook" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@wildishbywildcookbook" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#signatures">Signatures</a></li>
+            <li><a href="#flavor-radar">Flavor Radar</a></li>
+            <li><a href="#menu-explorer">Full Menu</a></li>
+            <li><a href="#reservation">Reserve Table</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Visit Us</h4>
+          <ul class="footer-nav-list">
+            <li><i class="fa-solid fa-location-dot text-gold"></i> Capitol TwinPeaks, 24 Staple St, Colombo 02</li>
+            <li><i class="fa-solid fa-phone text-gold"></i> <a href="tel:+94713333401">071 333 3401</a></li>
+            <li><i class="fa-regular fa-clock text-gold"></i> Daily 11:00 AM – 10:30 PM</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Wild Cookbook</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;">Follow Chef Charith's outdoor culinary journeys watched by 10.8 Million fans worldwide.</p>
+          <a href="https://youtube.com/@wildcookbook" target="_blank" rel="noopener" class="btn btn-yt btn-magnetic" style="font-size: 0.82rem; padding: 8px 16px;">
+            <i class="fa-brands fa-youtube"></i> Subscribe (10.8M)
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 WILDISH Restaurant by Wild Cookbook. All Rights Reserved.</div>
+        <div>Capitol TwinPeaks, Colombo 02, Sri Lanka</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== AMBIENT DINING SOUNDSCAPE & ASMR FLOATING DOCK ===== -->
+  <div id="soundscape-dock" class="soundscape-floating-dock" aria-label="Dining Soundscape Controller">
+    <button id="soundscape-play-btn" class="soundscape-play-btn" aria-label="Toggle Soundscape Audio">
+      <i class="fa-solid fa-play"></i>
+    </button>
+    <div class="soundwave-visualizer">
+      <span class="soundwave-bar"></span>
+      <span class="soundwave-bar"></span>
+      <span class="soundwave-bar"></span>
+      <span class="soundwave-bar"></span>
+      <span class="soundwave-bar"></span>
+    </div>
+    <div class="soundscape-info">
+      <span id="soundscape-track-title" class="soundscape-title">TwinPeaks Lounge</span>
+      <span id="soundscape-track-sub" class="soundscape-subtitle">Warm Amber Jazz Resonance</span>
+    </div>
+    <button id="soundscape-track-switch" class="soundscape-track-switch" title="Switch Soundscape Atmosphere">
+      <i class="fa-solid fa-repeat"></i>
+    </button>
+  </div>
+
+  <!-- ===== VIP BOARDING PASS MODAL ===== -->
+  <div id="res-ticket-modal" class="ticket-modal">
+    <div class="ticket-modal-backdrop"></div>
+    <div class="ticket-card">
+      <div class="ticket-header">
+        <div>
+          <h3>VIP Dining Pass</h3>
+          <span style="font-size: 0.8rem; letter-spacing: 0.1em;">WILDISH BY WILD COOKBOOK</span>
+        </div>
+        <button class="ticket-modal-close" style="background: none; border: none; font-size: 1.5rem; color: #000; cursor: pointer;">&times;</button>
+      </div>
+
+      <div class="ticket-body">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--gold-light);">Booking Reference</span>
+            <h4 id="pass-ref" style="font-size: 1.4rem; color: #fff; font-family: var(--font-sans);">WLD-849201</h4>
+          </div>
+          <div style="text-align: right;">
+            <span class="dish-badge badge-signature"><i class="fa-solid fa-circle-check"></i> Confirmed Table</span>
+          </div>
+        </div>
+
+        <div class="ticket-meta-grid">
+          <div class="ticket-field">
+            <span>Guest Name</span>
+            <strong id="pass-name">-</strong>
+          </div>
+          <div class="ticket-field">
+            <span>Contact</span>
+            <strong id="pass-phone">-</strong>
+          </div>
+          <div class="ticket-field">
+            <span>Date</span>
+            <strong id="pass-date">-</strong>
+          </div>
+          <div class="ticket-field">
+            <span>Time Window</span>
+            <strong id="pass-time">-</strong>
+          </div>
+          <div class="ticket-field">
+            <span>Party Size</span>
+            <strong id="pass-guests">-</strong>
+          </div>
+          <div class="ticket-field">
+            <span>Occasion</span>
+            <strong id="pass-occasion">-</strong>
+          </div>
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+          Please present this pass upon arrival at Capitol TwinPeaks. Wildish looks forward to welcoming you!
+        </p>
+      </div>
+
+      <div class="ticket-footer">
+        <span style="font-size: 0.85rem; color: var(--gold-light);"><i class="fa-solid fa-location-dot"></i> Ground Floor, Capitol TwinPeaks</span>
+        <button class="btn btn-gold" onclick="window.print()" style="font-size: 0.82rem; padding: 8px 16px;">
+          <i class="fa-solid fa-print"></i> Print / Save Pass
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DISH DETAIL INSPECTOR MODAL ===== -->
+  <div id="dish-detail-modal" class="ticket-modal">
+    <div class="ticket-modal-backdrop modal-backdrop"></div>
+    <div class="ticket-card" style="max-width: 640px;">
+      <div style="position: relative; height: 260px; overflow: hidden;">
+        <img id="modal-dish-img" src="" alt="" style="width: 100%; height: 100%; object-fit: cover;" />
+        <button class="modal-close" style="position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%; background: rgba(0,0,0,0.7); border: 1px solid var(--border-gold); color: #fff; font-size: 1.2rem; cursor: pointer;">&times;</button>
+      </div>
+      <div style="padding: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+          <div>
+            <span id="modal-dish-cat" style="font-size: 0.8rem; color: var(--gold-light); text-transform: uppercase; letter-spacing: 0.1em;"></span>
+            <h3 id="modal-dish-title" style="font-size: 1.6rem; color: #fff; margin-top: 4px;"></h3>
+          </div>
+          <div id="modal-dish-price" style="font-size: 1.3rem; font-weight: 700; color: var(--gold-light);"></div>
+        </div>
+
+        <div id="modal-dish-badges" style="display: flex; gap: 8px; margin: 14px 0 20px;"></div>
+
+        <p id="modal-dish-desc" style="font-size: 1rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;"></p>
+
+        <div style="display: flex; gap: 12px;">
+          <a href="#reservation" class="btn btn-gold modal-close" style="flex: 1;">
+            <i class="fa-regular fa-calendar-check"></i> Reserve Table for This Dish
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLOATING WHATSAPP VIP CONCIERGE ===== -->
+  <a href="https://wa.me/94713333401?text=Hello%20Wildish%20Team!%20I'd%20like%20to%20reserve%20a%20table%20at%20Capitol%20TwinPeaks." target="_blank" rel="noopener" class="whatsapp-floating-btn" aria-label="WhatsApp Table Booking">
+    <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+    <span>VIP WhatsApp</span>
+  </a>
+
+  <!-- Scripts -->
+  <script src="js/menu-data.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/reservation.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
