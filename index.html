@@ -9,12 +9,35 @@
   <meta name="keywords" content="Wildish, Wildish Restaurant, Wild Cookbook, Charith N Silva, fine dining Colombo, Capitol TwinPeaks, Sri Lankan restaurant, seafood, mocktails" />
   <meta name="theme-color" content="#07080a" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="WILDISH Restaurant | Immersive Dining in Colombo" />
-  <meta property="og:description" content="WILDISH at Capitol TwinPeaks, Colombo — immersive dining from Wild Cookbook by Chef Charith N. Silva." />
-  <meta property="og:image" content="assets/images/interior.png" />
+  <!-- Canonical & Localization -->
+  <link rel="canonical" href="https://wildish.lk/" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="Chef Charith N. Silva, Wild Cookbook" />
+
+  <!-- GEO Positioning & Local SEO -->
+  <meta name="geo.region" content="LK-11" />
+  <meta name="geo.placename" content="Capitol TwinPeaks, Colombo 02, Sri Lanka" />
+  <meta name="geo.position" content="6.9194;79.8477" />
+  <meta name="ICBM" content="6.9194, 79.8477" />
+
+  <!-- Open Graph & Social SEO -->
+  <meta property="og:type" content="restaurant.restaurant" />
+  <meta property="og:site_name" content="WILDISH Restaurant by Wild Cookbook" />
+  <meta property="og:title" content="WILDISH Restaurant | Immersive Dining in Colombo by Wild Cookbook" />
+  <meta property="og:description" content="WILDISH at Capitol TwinPeaks, Colombo 02 — globally inspired cuisine, fresh Madu lagoon crab curry, surf & turf grill, artisan mocktails & Sri Lankan soul." />
+  <meta property="og:image" content="https://wildish.lk/assets/images/interior.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://wildish.lk/" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@wildcookbook" />
+  <meta name="twitter:creator" content="@wildcookbook" />
+  <meta name="twitter:title" content="WILDISH Restaurant Colombo | By Wild Cookbook" />
+  <meta name="twitter:description" content="Immersive culinary destination at Capitol TwinPeaks Colombo by Chef Charith N. Silva." />
+  <meta name="twitter:image" content="https://wildish.lk/assets/images/interior.png" />
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="assets/favicons/favicon-96x96.png" sizes="96x96" />
@@ -28,7 +51,8 @@
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
-  <!-- Schema.org Structured Data -->
+
+  <!-- Schema.org Multi-Entity Graph: Restaurant, Founder, FAQs & Top Menu Items (AEO + GEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,17 +61,36 @@
         "@type": "Restaurant",
         "@id": "https://wildish.lk/#restaurant",
         "name": "Wildish Restaurant",
-        "alternateName": "Wildish by Wild Cookbook",
-        "description": "Immersive culinary destination from Wild Cookbook and Chef Charith N. Silva at Capitol TwinPeaks, Colombo — globally inspired cuisine, premium seafood, handcrafted beverages, and unmistakable Sri Lankan soul.",
+        "alternateName": ["Wildish", "Wildish by Wild Cookbook"],
+        "description": "Immersive fine-dining culinary restaurant by Chef Charith N. Silva (Wild Cookbook, 10.8M+ YouTube) located on the ground floor of Capitol TwinPeaks, Colombo 02. Featuring live flame cooking, Madu lagoon seafood, artisan coffee, and vibrant Sri Lankan fusion.",
         "url": "https://wildish.lk/",
         "telephone": "+94713333401",
         "priceRange": "LKR 1,500 - LKR 20,000",
-        "servesCuisine": ["Sri Lankan", "International", "Seafood", "Artisan Coffee"],
+        "servesCuisine": ["Sri Lankan", "International Fusion", "Seafood", "Artisan Coffee", "Gourmet Mocktails"],
         "acceptsReservations": true,
+        "paymentAccepted": "Cash, Credit Card, Debit Card, Visa, MasterCard",
+        "currenciesAccepted": "LKR",
+        "founder": {
+          "@type": "Person",
+          "name": "Charith N. Silva",
+          "jobTitle": "Head Chef & Founder",
+          "sameAs": [
+            "https://youtube.com/@wildcookbook",
+            "https://www.instagram.com/wildcookbook",
+            "https://www.facebook.com/wildcookbook"
+          ]
+        },
+        "sameAs": [
+          "https://www.instagram.com/wildish.colombo",
+          "https://www.facebook.com/wildish.colombo",
+          "https://youtube.com/@wildcookbook",
+          "https://www.tiktok.com/@wildishbywildcookbook"
+        ],
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Capitol Twin Peaks, 24 Staple Street",
+          "streetAddress": "Ground Floor, Capitol Twin Peaks, 24 Staple Street",
           "addressLocality": "Colombo 02",
+          "addressRegion": "Western Province",
           "postalCode": "00200",
           "addressCountry": "LK"
         },
@@ -56,7 +99,62 @@
           "latitude": 6.9194,
           "longitude": 79.8477
         },
-        "openingHours": "Mo-Su 11:00-22:30"
+        "hasMap": "https://maps.app.goo.gl/8cybe72swc7xstbV9",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "11:00",
+            "closes": "22:30"
+          }
+        ],
+        "hasMenu": "https://wildish.lk/menu.html"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://wildish.lk/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Where is Wildish located?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Wildish Restaurant is situated at Capitol Twin Peaks, 24 Staple Street, Colombo 02, Sri Lanka."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer a buffet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Wildish is exclusively an à la carte dining restaurant. Every dish is freshly prepared and fire-cooked upon order."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book a table?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can book online via the reservation form on wildish.lk, call hotline +94 71 333 3401, or message via VIP WhatsApp."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is your BYOB policy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Wildish warmly welcomes guests to bring their own wine and spirits. Complimentary glassware and bottle chilling service are provided."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are your opening hours?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Wildish is open daily from 11:00 AM to 10:30 PM for lunch and dinner."
+            }
+          }
+        ]
       }
     ]
   }

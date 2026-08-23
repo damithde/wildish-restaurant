@@ -8,6 +8,20 @@
   <meta name="description" content="Explore the full 70+ dish menu at WILDISH Colombo — fresh seafood, artisan pizzas, lagoon crab curry, signature mocktails, and decadent desserts." />
   <meta name="theme-color" content="#07080a" />
 
+  <!-- Canonical & GEO -->
+  <link rel="canonical" href="https://wildish.lk/menu.html" />
+  <meta name="geo.region" content="LK-11" />
+  <meta name="geo.placename" content="Capitol TwinPeaks, Colombo 02, Sri Lanka" />
+  <meta name="geo.position" content="6.9194;79.8477" />
+  <meta name="ICBM" content="6.9194, 79.8477" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="restaurant.menu" />
+  <meta property="og:title" content="Full Culinary Menu | WILDISH Restaurant Colombo" />
+  <meta property="og:description" content="Explore all 70+ dishes: Madu lagoon crab curry, seafood grill platters, wood-fired artisan pizza & signature mocktails." />
+  <meta property="og:image" content="https://wildish.lk/assets/images/crab-curry.png" />
+  <meta property="og:url" content="https://wildish.lk/menu.html" />
+
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="assets/favicons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="assets/favicons/favicon.svg" />
@@ -19,6 +33,47 @@
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
+
+  <!-- Menu Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Menu",
+    "@id": "https://wildish.lk/menu.html#menu",
+    "name": "WILDISH À La Carte Culinary Menu",
+    "url": "https://wildish.lk/menu.html",
+    "mainEntityOfPage": "https://wildish.lk/menu.html",
+    "inLanguage": "en",
+    "hasMenuSection": [
+      {
+        "@type": "MenuSection",
+        "name": "Mains & Signatures",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Madu Lagoon Crab Curry",
+            "description": "Freshly harvested Madu Lagoon whole crab slow-simmered in rich organic coconut milk with hand-ground roasted spices. Served with roast paan & pol sambol.",
+            "offers": {
+              "@type": "Offer",
+              "price": "12500",
+              "priceCurrency": "LKR"
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Wild Surf & Turf Grill Platter",
+            "description": "Rock lobster, king fish steaks, jumbo river prawns, and calamari with garlic butter rice.",
+            "offers": {
+              "@type": "Offer",
+              "price": "18600",
+              "priceCurrency": "LKR"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body style="padding-top: var(--nav-height);">
 
