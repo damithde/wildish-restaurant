@@ -422,10 +422,12 @@ class WildishMotionEngine {
       rootMargin: '0px 0px -30px 0px'
     });
 
-    revealElements.forEach(el => observer.observe(el));
-  }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
+  window.wildishSoundscape = new WildishSoundscapeEngine();
   window.wildishMotion = new WildishMotionEngine();
 });
+
+if (document.readyState !== 'loading') {
+  if (!window.wildishSoundscape) window.wildishSoundscape = new WildishSoundscapeEngine();
+  if (!window.wildishMotion) window.wildishMotion = new WildishMotionEngine();
+}

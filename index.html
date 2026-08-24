@@ -847,7 +847,7 @@
 
   <!-- ===== AMBIENT DINING SOUNDSCAPE & ASMR FLOATING DOCK ===== -->
   <div id="soundscape-dock" class="soundscape-floating-dock" aria-label="Dining Soundscape Controller">
-    <button id="soundscape-play-btn" class="soundscape-play-btn" aria-label="Toggle Soundscape Audio">
+    <button id="soundscape-play-btn" class="soundscape-play-btn" aria-label="Toggle Soundscape Audio" onclick="if(window.wildishSoundscape) window.wildishSoundscape.togglePlayback()">
       <i class="fa-solid fa-play"></i>
     </button>
     <div class="soundwave-visualizer">
@@ -861,7 +861,7 @@
       <span id="soundscape-track-title" class="soundscape-title">TwinPeaks Lounge</span>
       <span id="soundscape-track-sub" class="soundscape-subtitle">Warm Amber Jazz Resonance</span>
     </div>
-    <button id="soundscape-track-switch" class="soundscape-track-switch" title="Switch Soundscape Atmosphere">
+    <button id="soundscape-track-switch" class="soundscape-track-switch" title="Switch Soundscape Atmosphere" onclick="if(window.wildishSoundscape) window.wildishSoundscape.nextTrack()">
       <i class="fa-solid fa-repeat"></i>
     </button>
   </div>
