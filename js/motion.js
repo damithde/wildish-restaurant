@@ -56,26 +56,43 @@ class WildishSoundscapeEngine {
 
     // Desktop Soft Autoplay (Mobile remains manual)
     if (window.innerWidth >= 768) {
+      // Set UI to active state so the user sees the lounge is live
+      this.updateUIState();
+
       const startFadeInAutoplay = () => {
         if (!this.isPlaying) {
-          this.play(true); // with fade-in
+          this.play(true); // with smooth fade-in
         }
-        // Clean up one-time listeners
-        events.forEach(evt => window.removeEventListener(evt, startFadeInAutoplay));
+        cleanupListeners();
       };
 
-      const events = ['mousemove', 'scroll', 'click', 'keydown', 'wheel'];
+      const eventNames = ['pointermove', 'mousemove', 'scroll', 'click', 'mousedown', 'keydown', 'wheel', 'touchstart'];
+      const targets = [window, document, document.documentElement];
+
+      const cleanupListeners = () => {
+        targets.forEach(target => {
+          if (target && target.removeEventListener) {
+            eventNames.forEach(evt => target.removeEventListener(evt, startFadeInAutoplay));
+          }
+        });
+      };
+
+      targets.forEach(target => {
+        if (target && target.addEventListener) {
+          eventNames.forEach(evt => {
+            target.addEventListener(evt, startFadeInAutoplay, { once: true, passive: true });
+          });
+        }
+      });
 
       // 1. Try immediate unprompted play
       this.audio.play().then(() => {
         this.isPlaying = true;
         this.updateUIState();
         this.fadeInVolume();
+        cleanupListeners();
       }).catch(() => {
-        // 2. Browser policy requires user gesture: trigger smoothly on first mouse move, scroll or click
-        events.forEach(evt => {
-          window.addEventListener(evt, startFadeInAutoplay, { once: true, passive: true });
-        });
+        // Will start softly upon very first pointer drift, hover, or scroll
       });
     }
   }
