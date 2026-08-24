@@ -6,7 +6,7 @@ class WildishSoundscapeEngine {
   constructor() {
     this.audio = new Audio();
     this.audio.loop = true;
-    this.targetVolume = 0.35; // Gentle, relaxing low lounge volume
+    this.targetVolume = 0.50; // 50% ambient lounge volume
     this.audio.volume = 0.0;
     this.isPlaying = false;
     this.currentTrackIndex = 0;
