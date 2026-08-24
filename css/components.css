@@ -1947,3 +1947,77 @@
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 20px #80d8ff;
   animation: crystalGleam 3.2s ease-in-out infinite;
 }
+
+/* ==========================================================================
+   Photorealistic Optical Blending (Mix-Blend-Mode Screen + SVG Displacement)
+   ========================================================================== */
+.dish-card:hover .dish-img-wrap img,
+.signature-card:hover .signature-img-wrap img {
+  animation: cinemagraphGentleDrift 6s ease-in-out infinite;
+}
+
+/* Organic Steam Wisps with Realistic Smoke Texturing & Optical Dispersion */
+.atm-hot-steam {
+  mix-blend-mode: screen;
+}
+
+.atm-hot-steam .steam-wisp {
+  position: absolute;
+  bottom: 8%;
+  background: radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.75) 0%, rgba(255, 235, 205, 0.4) 35%, rgba(255, 248, 240, 0.15) 60%, transparent 80%);
+  filter: url('#steam-blur-filter') blur(6px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.atm-hot-steam .steam-wisp:nth-child(1) {
+  left: 22%;
+  width: 90px;
+  height: 140px;
+  animation: organicSteamSwirl1 4.5s ease-in-out infinite;
+}
+
+.atm-hot-steam .steam-wisp:nth-child(2) {
+  left: 52%;
+  width: 110px;
+  height: 160px;
+  animation: organicSteamSwirl2 5.2s ease-in-out infinite 0.9s;
+}
+
+.atm-hot-steam .steam-wisp:nth-child(3) {
+  left: 36%;
+  width: 80px;
+  height: 120px;
+  animation: organicSteamSwirl1 4.8s ease-in-out infinite 1.8s;
+}
+
+/* Fire & Sizzle with Heat Haze Refraction */
+.atm-fire-sizzle {
+  mix-blend-mode: screen;
+}
+
+.atm-fire-sizzle .sizzle-heat-wave {
+  position: absolute;
+  bottom: 5%;
+  left: 10%;
+  width: 80%;
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(255, 120, 30, 0.28) 0%, rgba(255, 180, 50, 0.12) 45%, transparent 75%);
+  filter: url('#heat-haze-filter') blur(8px);
+  mix-blend-mode: screen;
+  animation: heatHazeRipple 3s ease-in-out infinite;
+}
+
+/* Chilled Condensation Mist */
+.atm-chilled-frost {
+  mix-blend-mode: screen;
+}
+
+.atm-chilled-frost .frost-mist {
+  position: absolute;
+  top: 10%;
+  background: radial-gradient(circle, rgba(210, 245, 255, 0.65) 0%, rgba(180, 230, 255, 0.25) 45%, transparent 75%);
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  animation: iceCondensationBreath 5s ease-in-out infinite;
+}
