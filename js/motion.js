@@ -6,9 +6,11 @@ class WildishSoundscapeEngine {
   constructor() {
     this.audio = new Audio();
     this.audio.loop = true;
-    this.audio.volume = 0.85;
+    this.targetVolume = 0.35; // Gentle, relaxing low lounge volume
+    this.audio.volume = 0.0;
     this.isPlaying = false;
     this.currentTrackIndex = 0;
+    this.fadeInterval = null;
 
     this.tracks = [
       {
@@ -52,65 +54,95 @@ class WildishSoundscapeEngine {
       console.warn('Audio playback notice:', e);
     });
 
-    // Desktop Autoplay (Mobile remains manual)
+    // Desktop Soft Autoplay (Mobile remains manual)
     if (window.innerWidth >= 768) {
-      const attemptAutoplay = () => {
-        const playPromise = this.audio.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            this.isPlaying = true;
-            if (this.dock) this.dock.classList.add('is-playing');
-            if (this.playBtn) this.playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-            if (this.titleEl) this.titleEl.textContent = this.tracks[this.currentTrackIndex].title;
-            if (this.subtitleEl) this.subtitleEl.textContent = this.tracks[this.currentTrackIndex].subtitle;
-          }).catch(() => {
-            // If browser autoplay policy blocks unprompted audio, trigger on first desktop interaction
-            const unlockOnFirstDesktopInteraction = () => {
-              if (!this.isPlaying && window.innerWidth >= 768) {
-                this.play();
-              }
-              window.removeEventListener('click', unlockOnFirstDesktopInteraction);
-              window.removeEventListener('scroll', unlockOnFirstDesktopInteraction);
-              window.removeEventListener('keydown', unlockOnFirstDesktopInteraction);
-            };
-            window.addEventListener('click', unlockOnFirstDesktopInteraction, { once: true });
-            window.addEventListener('scroll', unlockOnFirstDesktopInteraction, { once: true });
-            window.addEventListener('keydown', unlockOnFirstDesktopInteraction, { once: true });
-          });
+      const startFadeInAutoplay = () => {
+        if (!this.isPlaying) {
+          this.play(true); // with fade-in
         }
+        // Clean up one-time listeners
+        events.forEach(evt => window.removeEventListener(evt, startFadeInAutoplay));
       };
 
-      // Slight delay to let page mount smoothly
-      setTimeout(attemptAutoplay, 500);
+      const events = ['mousemove', 'scroll', 'click', 'keydown', 'wheel'];
+
+      // 1. Try immediate unprompted play
+      this.audio.play().then(() => {
+        this.isPlaying = true;
+        this.updateUIState();
+        this.fadeInVolume();
+      }).catch(() => {
+        // 2. Browser policy requires user gesture: trigger smoothly on first mouse move, scroll or click
+        events.forEach(evt => {
+          window.addEventListener(evt, startFadeInAutoplay, { once: true, passive: true });
+        });
+      });
     }
+  }
+
+  fadeInVolume(durationMs = 3500) {
+    if (this.fadeInterval) clearInterval(this.fadeInterval);
+    
+    this.audio.volume = 0.0;
+    const steps = 35;
+    const stepTime = durationMs / steps;
+    const volumeStep = this.targetVolume / steps;
+
+    this.fadeInterval = setInterval(() => {
+      if (!this.isPlaying) {
+        clearInterval(this.fadeInterval);
+        return;
+      }
+      if (this.audio.volume + volumeStep >= this.targetVolume) {
+        this.audio.volume = this.targetVolume;
+        clearInterval(this.fadeInterval);
+      } else {
+        this.audio.volume = Math.min(this.targetVolume, this.audio.volume + volumeStep);
+      }
+    }, stepTime);
+  }
+
+  updateUIState() {
+    const track = this.tracks[this.currentTrackIndex];
+    if (this.dock) this.dock.classList.add('is-playing');
+    if (this.playBtn) this.playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    if (this.titleEl) this.titleEl.textContent = track.title;
+    if (this.subtitleEl) this.subtitleEl.textContent = track.subtitle;
   }
 
   togglePlayback() {
     if (this.isPlaying) {
       this.pause();
     } else {
-      this.play();
+      this.play(false);
     }
   }
 
-  play() {
+  play(withFade = false) {
     const track = this.tracks[this.currentTrackIndex];
     if (this.audio.src.indexOf(track.file) === -1) {
       this.audio.src = track.file;
     }
 
+    if (withFade) {
+      this.audio.volume = 0.0;
+    } else {
+      this.audio.volume = this.targetVolume;
+    }
+
     this.audio.play().then(() => {
       this.isPlaying = true;
-      if (this.dock) this.dock.classList.add('is-playing');
-      if (this.playBtn) this.playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-      if (this.titleEl) this.titleEl.textContent = track.title;
-      if (this.subtitleEl) this.subtitleEl.textContent = track.subtitle;
+      this.updateUIState();
+      if (withFade) {
+        this.fadeInVolume();
+      }
     }).catch(err => {
-      console.log('Audio autoplay prevented or waiting for interaction:', err);
+      console.log('Audio playback waiting for interaction:', err);
     });
   }
 
   pause() {
+    if (this.fadeInterval) clearInterval(this.fadeInterval);
     this.audio.pause();
     this.isPlaying = false;
     if (this.dock) this.dock.classList.remove('is-playing');
@@ -126,7 +158,7 @@ class WildishSoundscapeEngine {
     if (this.subtitleEl) this.subtitleEl.textContent = track.subtitle;
 
     if (this.isPlaying) {
-      this.play();
+      this.play(false);
     }
   }
 }
