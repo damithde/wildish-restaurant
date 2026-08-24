@@ -1812,7 +1812,7 @@
 }
 
 /* ==========================================================================
-   Realistic Culinary Dish Atmosphere Overlays (Steam, Sizzle, Frost)
+   Realistic Culinary Dish Atmosphere Overlays (HOVER ONLY)
    ========================================================================== */
 .dish-atmosphere-overlay {
   position: absolute;
@@ -1824,139 +1824,20 @@
   z-index: 4;
   overflow: hidden;
   border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 1. Hot Steam Atmosphere */
-.atm-hot-steam .steam-wisp {
-  position: absolute;
-  bottom: 15%;
-  width: 60px;
-  height: 90px;
-  border-radius: 50% 50% 40% 40%;
-  background: radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.45) 0%, rgba(255, 240, 220, 0.25) 40%, transparent 75%);
-  filter: blur(10px);
-  transform-origin: bottom center;
+/* Activate on Hover & when inside Active Inspector Modal */
+.signature-card:hover .dish-atmosphere-overlay,
+.dish-card:hover .dish-atmosphere-overlay,
+.signature-card:focus-within .dish-atmosphere-overlay,
+.dish-card:focus-within .dish-atmosphere-overlay,
+#dish-detail-modal.is-active .dish-atmosphere-overlay {
+  opacity: 1;
 }
 
-.atm-hot-steam .steam-wisp:nth-child(1) {
-  left: 25%;
-  animation: steamRiseOne 3.6s ease-in-out infinite;
-}
-
-.atm-hot-steam .steam-wisp:nth-child(2) {
-  left: 55%;
-  animation: steamRiseTwo 4.2s ease-in-out infinite 0.8s;
-  width: 75px;
-  height: 110px;
-}
-
-.atm-hot-steam .steam-wisp:nth-child(3) {
-  left: 40%;
-  animation: steamRiseOne 3.9s ease-in-out infinite 1.6s;
-  width: 50px;
-  height: 80px;
-}
-
-/* Intensify on hover */
-.dish-card:hover .atm-hot-steam .steam-wisp,
-.signature-card:hover .atm-hot-steam .steam-wisp {
-  opacity: 0.85;
-  filter: blur(8px);
-}
-
-/* 2. Fire & Sizzle Atmosphere */
-.atm-fire-sizzle {
-  background: radial-gradient(circle at 50% 65%, rgba(217, 79, 38, 0.12) 0%, transparent 60%);
-}
-
-.atm-fire-sizzle .sizzle-heat-wave {
-  position: absolute;
-  bottom: 10%;
-  left: 15%;
-  width: 70%;
-  height: 60%;
-  background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.2) 0%, transparent 70%);
-  filter: blur(12px);
-  animation: heatHazeRipple 2.8s ease-in-out infinite;
-}
-
-.atm-fire-sizzle .ember-spark {
-  position: absolute;
-  bottom: 25%;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #ffb800;
-  box-shadow: 0 0 8px #ff4500, 0 0 14px #ffb800;
-}
-
-.atm-fire-sizzle .ember-spark:nth-child(1) {
-  left: 30%;
-  animation: emberSparkle 2.4s ease-out infinite;
-}
-
-.atm-fire-sizzle .ember-spark:nth-child(2) {
-  left: 65%;
-  animation: emberSparkle 3s ease-out infinite 0.7s;
-  width: 4px;
-  height: 4px;
-}
-
-.atm-fire-sizzle .ember-spark:nth-child(3) {
-  left: 48%;
-  animation: emberSparkle 2.7s ease-out infinite 1.3s;
-  width: 6px;
-  height: 6px;
-}
-
-/* 3. Chilled & Frost Atmosphere */
-.atm-chilled-frost {
-  background: radial-gradient(circle at 50% 30%, rgba(135, 206, 250, 0.12) 0%, transparent 60%);
-}
-
-.atm-chilled-frost .frost-mist {
-  position: absolute;
-  top: 15%;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(224, 247, 255, 0.5) 0%, rgba(179, 229, 252, 0.2) 50%, transparent 75%);
-  filter: blur(12px);
-}
-
-.atm-chilled-frost .frost-mist:nth-child(1) {
-  left: 20%;
-  animation: frostVaporDrift 4s ease-in-out infinite;
-}
-
-.atm-chilled-frost .frost-mist:nth-child(2) {
-  right: 25%;
-  animation: frostVaporDrift 4.5s ease-in-out infinite 1.2s;
-  width: 90px;
-  height: 90px;
-}
-
-.atm-chilled-frost .frost-gleam {
-  position: absolute;
-  top: 18%;
-  right: 22%;
-  width: 14px;
-  height: 14px;
-  background: #ffffff;
-  clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 20px #80d8ff;
-  animation: crystalGleam 3.2s ease-in-out infinite;
-}
-
-/* ==========================================================================
-   Photorealistic Optical Blending (Mix-Blend-Mode Screen + SVG Displacement)
-   ========================================================================== */
-.dish-card:hover .dish-img-wrap img,
-.signature-card:hover .signature-img-wrap img {
-  animation: cinemagraphGentleDrift 6s ease-in-out infinite;
-}
-
-/* Organic Steam Wisps with Realistic Smoke Texturing & Optical Dispersion */
+/* 1. Hot Steam Atmosphere (Screen Blended) */
 .atm-hot-steam {
   mix-blend-mode: screen;
 }
@@ -1991,9 +1872,10 @@
   animation: organicSteamSwirl1 4.8s ease-in-out infinite 1.8s;
 }
 
-/* Fire & Sizzle with Heat Haze Refraction */
+/* 2. Fire & Sizzle Atmosphere */
 .atm-fire-sizzle {
   mix-blend-mode: screen;
+  background: radial-gradient(circle at 50% 65%, rgba(217, 79, 38, 0.12) 0%, transparent 60%);
 }
 
 .atm-fire-sizzle .sizzle-heat-wave {
@@ -2008,9 +1890,39 @@
   animation: heatHazeRipple 3s ease-in-out infinite;
 }
 
-/* Chilled Condensation Mist */
+.atm-fire-sizzle .ember-spark {
+  position: absolute;
+  bottom: 25%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ffb800;
+  box-shadow: 0 0 8px #ff4500, 0 0 14px #ffb800;
+}
+
+.atm-fire-sizzle .ember-spark:nth-child(1) {
+  left: 30%;
+  animation: emberSparkle 2.4s ease-out infinite;
+}
+
+.atm-fire-sizzle .ember-spark:nth-child(2) {
+  left: 65%;
+  animation: emberSparkle 3s ease-out infinite 0.7s;
+  width: 4px;
+  height: 4px;
+}
+
+.atm-fire-sizzle .ember-spark:nth-child(3) {
+  left: 48%;
+  animation: emberSparkle 2.7s ease-out infinite 1.3s;
+  width: 6px;
+  height: 6px;
+}
+
+/* 3. Chilled & Frost Atmosphere */
 .atm-chilled-frost {
   mix-blend-mode: screen;
+  background: radial-gradient(circle at 50% 30%, rgba(135, 206, 250, 0.12) 0%, transparent 60%);
 }
 
 .atm-chilled-frost .frost-mist {
@@ -2020,4 +1932,22 @@
   filter: blur(10px);
   mix-blend-mode: screen;
   animation: iceCondensationBreath 5s ease-in-out infinite;
+}
+
+.atm-chilled-frost .frost-gleam {
+  position: absolute;
+  top: 18%;
+  right: 22%;
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 20px #80d8ff;
+  animation: crystalGleam 3.2s ease-in-out infinite;
+}
+
+/* Cinemagraph gentle breathing on hover */
+.dish-card:hover .dish-img-wrap img,
+.signature-card:hover .signature-img-wrap img {
+  animation: cinemagraphGentleDrift 6s ease-in-out infinite;
 }
