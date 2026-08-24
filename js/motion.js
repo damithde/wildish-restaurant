@@ -16,17 +16,17 @@ class WildishSoundscapeEngine {
       {
         title: 'TwinPeaks Jazz Lounge',
         subtitle: 'Rhodes Piano & Upright Bass',
-        file: 'assets/audio/twinpeaks-lounge.wav'
+        file: 'assets/audio/twinpeaks-lounge.m4a'
       },
       {
         title: 'Ceylon Sunset Acoustic',
         subtitle: 'Fingerpicked Acoustic & Ocean Breeze',
-        file: 'assets/audio/ceylon-acoustic.wav'
+        file: 'assets/audio/ceylon-acoustic.m4a'
       },
       {
         title: 'Colombo Chillhop Beats',
         subtitle: 'Mellow Lofi Culinary Beats',
-        file: 'assets/audio/colombo-chill-lofi.wav'
+        file: 'assets/audio/colombo-chill-lofi.m4a'
       }
     ];
 
@@ -421,6 +421,10 @@ class WildishMotionEngine {
       threshold: 0.12,
       rootMargin: '0px 0px -30px 0px'
     });
+
+    revealElements.forEach(el => observer.observe(el));
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   window.wildishSoundscape = new WildishSoundscapeEngine();
