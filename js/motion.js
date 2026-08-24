@@ -51,6 +51,38 @@ class WildishSoundscapeEngine {
     this.audio.addEventListener('error', (e) => {
       console.warn('Audio playback notice:', e);
     });
+
+    // Desktop Autoplay (Mobile remains manual)
+    if (window.innerWidth >= 768) {
+      const attemptAutoplay = () => {
+        const playPromise = this.audio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            this.isPlaying = true;
+            if (this.dock) this.dock.classList.add('is-playing');
+            if (this.playBtn) this.playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            if (this.titleEl) this.titleEl.textContent = this.tracks[this.currentTrackIndex].title;
+            if (this.subtitleEl) this.subtitleEl.textContent = this.tracks[this.currentTrackIndex].subtitle;
+          }).catch(() => {
+            // If browser autoplay policy blocks unprompted audio, trigger on first desktop interaction
+            const unlockOnFirstDesktopInteraction = () => {
+              if (!this.isPlaying && window.innerWidth >= 768) {
+                this.play();
+              }
+              window.removeEventListener('click', unlockOnFirstDesktopInteraction);
+              window.removeEventListener('scroll', unlockOnFirstDesktopInteraction);
+              window.removeEventListener('keydown', unlockOnFirstDesktopInteraction);
+            };
+            window.addEventListener('click', unlockOnFirstDesktopInteraction, { once: true });
+            window.addEventListener('scroll', unlockOnFirstDesktopInteraction, { once: true });
+            window.addEventListener('keydown', unlockOnFirstDesktopInteraction, { once: true });
+          });
+        }
+      };
+
+      // Slight delay to let page mount smoothly
+      setTimeout(attemptAutoplay, 500);
+    }
   }
 
   togglePlayback() {
