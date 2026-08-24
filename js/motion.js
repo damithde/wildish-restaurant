@@ -6,7 +6,7 @@ class WildishSoundscapeEngine {
   constructor() {
     this.audio = new Audio();
     this.audio.loop = true;
-    this.audio.volume = 0.50; // 50% target volume
+    this.audio.volume = 0.35; // 35% mellow ambient lounge volume
     this.isPlaying = false;
     this.currentTrackIndex = 0;
 
@@ -120,7 +120,7 @@ class WildishSoundscapeEngine {
     if (this.audio.src.indexOf(track.file) === -1) {
       this.audio.src = track.file;
     }
-    this.audio.volume = 0.50;
+    this.audio.volume = 0.35;
     this.audio.play().catch(err => {
       console.log('Audio playback waiting for user action:', err);
     });
