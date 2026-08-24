@@ -334,6 +334,7 @@ class WildishApp {
 
     container.innerHTML = allItems.map(dish => {
       const priceFormatted = dish.price.toLocaleString('en-US');
+      const atmosphereHtml = this.getDishAtmosphere(dish);
       
       const badgeHtml = dish.badges.map(b => {
         if (b === 'signature') return '<span class="dish-badge badge-signature"><i class="fa-solid fa-crown"></i> Chef Signature</span>';
@@ -352,6 +353,7 @@ class WildishApp {
           <div class="dish-img-wrap">
             <img src="${dish.image}" alt="${dish.name}" loading="lazy" />
             <div class="dish-overlay-glow"></div>
+            ${atmosphereHtml}
             <div class="dish-badges-list">${badgeHtml}</div>
           </div>
           <div class="dish-body">
@@ -376,6 +378,47 @@ class WildishApp {
     }
   }
 
+  getDishAtmosphere(dish) {
+    const cat = (dish.categoryName || '').toLowerCase();
+    const name = (dish.name || '').toLowerCase();
+
+    // 1. Chilled / Frozen / Cold Desserts & Beverages
+    if (cat.includes('mocktail') || cat.includes('refresh') || cat.includes('shake') || 
+        cat.includes('smoothie') || cat.includes('squeezed') || cat.includes('iced') || 
+        cat.includes('dessert') || name.includes('glacier') || name.includes('arctic') || 
+        name.includes('frozen') || name.includes('cheesecake') || name.includes('tart')) {
+      return `
+        <div class="dish-atmosphere-overlay atm-chilled-frost" title="Chilled Fresh">
+          <div class="frost-mist"></div>
+          <div class="frost-mist"></div>
+          <div class="frost-gleam"></div>
+        </div>
+      `;
+    }
+
+    // 2. Fire & Sizzle / Wood-fired Grill / Steaks / Pizzas
+    if (cat.includes('pizza') || name.includes('grill') || name.includes('sizzle') || 
+        name.includes('steak') || name.includes('bbq') || name.includes('crunchy') || name.includes('crispy')) {
+      return `
+        <div class="dish-atmosphere-overlay atm-fire-sizzle" title="Wood-Fired Sizzle">
+          <div class="sizzle-heat-wave"></div>
+          <div class="ember-spark"></div>
+          <div class="ember-spark"></div>
+          <div class="ember-spark"></div>
+        </div>
+      `;
+    }
+
+    // 3. Hot Steam (Curries, Soups, Pasta, Mains, Hot Seafood, Rice, Roast Paan)
+    return `
+      <div class="dish-atmosphere-overlay atm-hot-steam" title="Served Piping Hot">
+        <div class="steam-wisp"></div>
+        <div class="steam-wisp"></div>
+        <div class="steam-wisp"></div>
+      </div>
+    `;
+  }
+
   inspectDish(dishId) {
     let found = null;
     window.WILDISH_MENU.forEach(cat => {
@@ -394,6 +437,14 @@ class WildishApp {
     document.getElementById('modal-dish-cat').textContent = found.categoryName;
     document.getElementById('modal-dish-price').textContent = `LKR ${found.price.toLocaleString('en-US')}`;
     document.getElementById('modal-dish-desc').textContent = found.desc;
+
+    // Inject Atmosphere into Modal
+    const modalImgWrap = modal.querySelector('.modal-img-container') || modal.querySelector('div[style*="height: 260px"]');
+    if (modalImgWrap) {
+      const oldAtm = modalImgWrap.querySelector('.dish-atmosphere-overlay');
+      if (oldAtm) oldAtm.remove();
+      modalImgWrap.insertAdjacentHTML('beforeend', this.getDishAtmosphere(found));
+    }
 
     const badgeContainer = document.getElementById('modal-dish-badges');
     if (badgeContainer) {
