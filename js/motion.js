@@ -7,7 +7,6 @@ class WildishSoundscapeEngine {
     this.audio = new Audio();
     this.audio.loop = true;
     this.audio.volume = 0.35; // 35% mellow ambient lounge volume
-    this.isPlaying = false;
     this.currentTrackIndex = 0;
 
     this.tracks = [
@@ -37,13 +36,17 @@ class WildishSoundscapeEngine {
     this.initEvents();
   }
 
+  get isPlaying() {
+    return !this.audio.paused;
+  }
+
   initEvents() {
     if (!this.playBtn) return;
 
     this.audio.src = this.tracks[this.currentTrackIndex].file;
     this.updateTrackLabels();
 
-    // Direct User Clicks
+    // Direct Play Button Click
     this.playBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       this.togglePlayback();
@@ -56,48 +59,60 @@ class WildishSoundscapeEngine {
       });
     }
 
-    // Native Audio Event Sync
-    this.audio.addEventListener('playing', () => {
-      this.isPlaying = true;
-      if (this.dock) this.dock.classList.add('is-playing');
-      if (this.playBtn) this.playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-    });
+    // Direct synchronization with HTML5 Audio element events
+    this.audio.addEventListener('play', () => this.syncUI(true));
+    this.audio.addEventListener('playing', () => this.syncUI(true));
+    this.audio.addEventListener('pause', () => this.syncUI(false));
+    this.audio.addEventListener('ended', () => this.nextTrack());
 
-    this.audio.addEventListener('pause', () => {
-      this.isPlaying = false;
-      if (this.dock) this.dock.classList.remove('is-playing');
-      if (this.playBtn) this.playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-    });
-
-    this.audio.addEventListener('ended', () => {
-      this.nextTrack();
-    });
-
+    // Server MIME Fallback: if .m4a fails on strict production server, fallback to .wav
     this.audio.addEventListener('error', (e) => {
-      console.warn('Audio notice:', e);
+      console.warn('Audio fallback check:', e);
+      if (this.audio.src.includes('.m4a')) {
+        this.audio.src = this.tracks[this.currentTrackIndex].file.replace('.m4a', '.wav');
+        this.audio.play().catch(() => {});
+      }
     });
 
-    // Desktop Autoplay Strategy
-    if (window.innerWidth >= 768) {
-      // 1. Attempt immediate autoplay
-      const playPromise = this.audio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // 2. If browser requires initial user activation, trigger on very first click/touch/keypress anywhere
-          const unlockAudio = () => {
-            if (!this.isPlaying) {
-              this.play();
-            }
-            ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {
-              document.removeEventListener(evt, unlockAudio);
-            });
-          };
+    // Auto-unlock on first user interaction anywhere on page (except soundscape dock)
+    const unlockOnFirstInteraction = (e) => {
+      if (this.dock && this.dock.contains(e.target)) {
+        return;
+      }
+      if (this.audio.paused) {
+        this.play();
+      }
+      cleanup();
+    };
 
-          ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {
-            document.addEventListener(evt, unlockAudio, { once: true, passive: true });
-          });
+    const cleanup = () => {
+      ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {
+        document.removeEventListener(evt, unlockOnFirstInteraction);
+      });
+    };
+
+    ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {
+      document.addEventListener(evt, unlockOnFirstInteraction, { once: true, passive: true });
+    });
+
+    // Desktop direct autoplay attempt
+    if (window.innerWidth >= 768) {
+      const p = this.audio.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          // Blocked by browser until first interaction
         });
       }
+    }
+  }
+
+  syncUI(playing) {
+    if (this.dock) {
+      if (playing) this.dock.classList.add('is-playing');
+      else this.dock.classList.remove('is-playing');
+    }
+    if (this.playBtn) {
+      this.playBtn.innerHTML = playing ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
     }
   }
 
@@ -108,22 +123,25 @@ class WildishSoundscapeEngine {
   }
 
   togglePlayback() {
-    if (this.isPlaying) {
-      this.pause();
-    } else {
+    if (this.audio.paused) {
       this.play();
+    } else {
+      this.pause();
     }
   }
 
   play() {
     const track = this.tracks[this.currentTrackIndex];
-    if (this.audio.src.indexOf(track.file) === -1) {
+    if (!this.audio.src || !this.audio.src.includes(track.file.replace('.m4a', ''))) {
       this.audio.src = track.file;
     }
     this.audio.volume = 0.35;
-    this.audio.play().catch(err => {
-      console.log('Audio playback waiting for user action:', err);
-    });
+    const playPromise = this.audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(err => {
+        console.log('Audio waiting for user gesture:', err);
+      });
+    }
   }
 
   pause() {
@@ -136,7 +154,7 @@ class WildishSoundscapeEngine {
     this.audio.src = track.file;
     this.updateTrackLabels();
 
-    if (this.isPlaying) {
+    if (!this.audio.paused) {
       this.play();
     }
   }
