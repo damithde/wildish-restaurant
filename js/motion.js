@@ -4,7 +4,7 @@
 
 class WildishSoundscapeEngine {
   constructor() {
-    this.audio = new Audio();
+    this.audio = document.getElementById('wildish-audio-element') || new Audio('assets/audio/twinpeaks-lounge.m4a');
     this.audio.loop = true;
     this.audio.volume = 0.35; // 35% mellow ambient lounge volume
     this.currentTrackIndex = 0;
@@ -43,7 +43,6 @@ class WildishSoundscapeEngine {
   initEvents() {
     if (!this.playBtn) return;
 
-    this.audio.src = this.tracks[this.currentTrackIndex].file;
     this.updateTrackLabels();
 
     // Direct Play Button Click
@@ -70,40 +69,46 @@ class WildishSoundscapeEngine {
       console.warn('Audio fallback check:', e);
       if (this.audio.src.includes('.m4a')) {
         this.audio.src = this.tracks[this.currentTrackIndex].file.replace('.m4a', '.wav');
+        this.audio.load();
         this.audio.play().catch(() => {});
       }
     });
 
-    // Auto-unlock on first user interaction anywhere on page (except soundscape dock)
-    const unlockOnFirstInteraction = (e) => {
-      if (this.dock && this.dock.contains(e.target)) {
-        return;
-      }
-      if (this.audio.paused) {
-        this.play();
-      }
-      cleanup();
-    };
+    // 1. Direct autoplay attempt on load
+    const tryAutoplay = () => {
+      this.audio.volume = 0.35;
+      const playPromise = this.audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          this.syncUI(true);
+        }).catch(() => {
+          // Autoplay blocked by browser security policy on initial page load:
+          // Attach persistent first-gesture unlocker across all user interaction types
+          const unlockEvents = ['click', 'pointerdown', 'mousedown', 'touchstart', 'touchend', 'keydown', 'wheel'];
+          
+          const unlockHandler = (e) => {
+            if (this.dock && this.dock.contains(e.target)) return;
+            this.audio.volume = 0.35;
+            this.audio.play().then(() => {
+              // Successfully started! Remove unlock listeners
+              unlockEvents.forEach(evt => {
+                window.removeEventListener(evt, unlockHandler, { capture: true });
+                document.removeEventListener(evt, unlockHandler, { capture: true });
+              });
+            }).catch(() => {
+              // Keep listeners if browser still requires further activation
+            });
+          };
 
-    const cleanup = () => {
-      ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {
-        document.removeEventListener(evt, unlockOnFirstInteraction);
-      });
-    };
-
-    ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {
-      document.addEventListener(evt, unlockOnFirstInteraction, { once: true, passive: true });
-    });
-
-    // Desktop direct autoplay attempt
-    if (window.innerWidth >= 768) {
-      const p = this.audio.play();
-      if (p !== undefined) {
-        p.catch(() => {
-          // Blocked by browser until first interaction
+          unlockEvents.forEach(evt => {
+            window.addEventListener(evt, unlockHandler, { capture: true, passive: true });
+            document.addEventListener(evt, unlockHandler, { capture: true, passive: true });
+          });
         });
       }
-    }
+    };
+
+    tryAutoplay();
   }
 
   syncUI(playing) {
@@ -134,6 +139,7 @@ class WildishSoundscapeEngine {
     const track = this.tracks[this.currentTrackIndex];
     if (!this.audio.src || !this.audio.src.includes(track.file.replace('.m4a', ''))) {
       this.audio.src = track.file;
+      this.audio.load();
     }
     this.audio.volume = 0.35;
     const playPromise = this.audio.play();
@@ -152,6 +158,7 @@ class WildishSoundscapeEngine {
     this.currentTrackIndex = (this.currentTrackIndex + 1) % this.tracks.length;
     const track = this.tracks[this.currentTrackIndex];
     this.audio.src = track.file;
+    this.audio.load();
     this.updateTrackLabels();
 
     if (!this.audio.paused) {

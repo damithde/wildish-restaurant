@@ -847,6 +847,10 @@
 
   <!-- ===== AMBIENT DINING SOUNDSCAPE & ASMR FLOATING DOCK ===== -->
   <div id="soundscape-dock" class="soundscape-floating-dock" aria-label="Dining Soundscape Controller">
+    <audio id="wildish-audio-element" preload="auto" loop playsinline>
+      <source src="assets/audio/twinpeaks-lounge.m4a" type="audio/mp4" />
+      <source src="assets/audio/twinpeaks-lounge.wav" type="audio/wav" />
+    </audio>
     <button id="soundscape-play-btn" class="soundscape-play-btn" aria-label="Toggle Soundscape Audio" onclick="if(window.wildishSoundscape) window.wildishSoundscape.togglePlayback()">
       <i class="fa-solid fa-play"></i>
     </button>
