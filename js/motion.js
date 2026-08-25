@@ -160,23 +160,6 @@ class WildishSoundscapeEngine {
   }
 }
 
-// Global Splash Gate Controller
-window.enterWildishExperience = function(withSound = true) {
-  const gate = document.getElementById('experience-splash-gate');
-  if (gate) {
-    gate.classList.add('is-entered');
-  }
-
-  if (withSound && window.wildishSoundscape) {
-    window.wildishSoundscape.play();
-  }
-
-  const heroVideo = document.querySelector('.hero-video-bg');
-  if (heroVideo) {
-    heroVideo.play().catch(() => {});
-  }
-};
-
 class WildishMotionEngine {
   constructor() {
     this.canvas = document.getElementById('hero-particle-canvas');
